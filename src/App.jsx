@@ -1,4 +1,6 @@
-import Card from './components/Card'
+import Card from './components/Card/Card'
+import Container from './components/Container/Container'
+import Title from './components/Title/Title'
 
 const data = [
   {
@@ -30,13 +32,13 @@ const data = [
 
 function App() {
   return (
-    <>
-      <h1>qwerty</h1>
+    <Container>
+      <Title size='xl'>qwerty</Title>
       <hr />
       {data.map((item) => (
         <Card elem={item} key={item.id} />
       ))}
-    </>
+    </Container>
   )
 }
 
