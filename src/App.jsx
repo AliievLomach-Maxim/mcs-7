@@ -1,44 +1,32 @@
-import Card from './components/Card/Card'
-import Container from './components/Container/Container'
-import Title from './components/Title/Title'
+import { useState } from 'react'
 
-const data = [
-  {
-    id: 1,
-    title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-    body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-  },
-  {
-    id: 2,
-    title: 'qui est esse',
-    body: 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla',
-  },
-  {
-    id: 3,
-    title: 'ea molestias quasi exercitationem repellat qui ipsa sit aut',
-    body: 'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut',
-  },
-  {
-    id: 4,
-    title: 'eum et est occaecati',
-    body: 'ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit',
-  },
-  {
-    id: 5,
-    title: 'nesciunt quas odio',
-    body: 'repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque',
-  },
-]
+const Counter = ({ value, handleClick }) => {
+  return <button onClick={handleClick}>{value}</button>
+}
 
-function App() {
+const App = () => {
+  const [counterState, setCounterState] = useState({
+    counter1: 0,
+    counter2: 0,
+    counter3: 0,
+  })
+
+  const handleClickCounter = (key) => {
+    setCounterState({
+      ...counterState,
+      [key]: counterState[key] + 1,
+    })
+  }
+
+  const sum = counterState.counter1 + counterState.counter2
+
   return (
-    <Container>
-      <Title size='xl'>qwerty</Title>
-      <hr />
-      {data.map((item) => (
-        <Card elem={item} key={item.id} />
-      ))}
-    </Container>
+    <div>
+      <Counter value={counterState.counter1} handleClick={() => handleClickCounter('counter1')} />
+      <h1>{sum}</h1>
+      <Counter value={counterState.counter2} handleClick={() => handleClickCounter('counter2')} />
+      <Counter value={counterState.counter3} handleClick={() => handleClickCounter('counter3')} />
+    </div>
   )
 }
 
