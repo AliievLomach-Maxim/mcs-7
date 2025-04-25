@@ -1,31 +1,42 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Timer from './components/Timer/Timer'
+import Counter from './components/Counter/Counter'
 
-const Counter = ({ value, handleClick }) => {
-  return <button onClick={handleClick}>{value}</button>
-}
+// App mount >> App unmount >> App mount
 
 const App = () => {
-  const [counterState, setCounterState] = useState({
-    counter1: 0,
-    counter2: 0,
-    counter3: 0,
-  })
+  const [counter, setCounter] = useState(0)
+  const [counter2, setCounter2] = useState(0)
+  const [isShowTimer, setIsShowTimer] = useState(false)
 
-  const handleClickCounter = (key) => {
-    setCounterState({
-      ...counterState,
-      [key]: counterState[key] + 1,
-    })
-  }
+  // Mount
+  useEffect(() => {
+    console.log('Mount')
+  }, [])
 
-  const sum = counterState.counter1 + counterState.counter2
+  // Mount & update counter
+  useEffect(() => {
+    console.log('counter', counter)
+  }, [counter])
+
+  // update counter
+  useEffect(() => {
+    if (counter2 === 0) {
+      return
+    }
+    console.log('counter2', counter2)
+  }, [counter2])
 
   return (
     <div>
-      <Counter value={counterState.counter1} handleClick={() => handleClickCounter('counter1')} />
-      <h1>{sum}</h1>
-      <Counter value={counterState.counter2} handleClick={() => handleClickCounter('counter2')} />
-      <Counter value={counterState.counter3} handleClick={() => handleClickCounter('counter3')} />
+      <button onClick={() => setCounter(counter + 1)}>{counter}</button>
+      <button onClick={() => setCounter2(counter2 + 1)}>{counter2}</button>
+      <button onClick={() => setIsShowTimer(!isShowTimer)}>{isShowTimer ? 'Hide' : 'Show'}</button>
+      {isShowTimer && <Timer />}
+      <hr />
+      <hr />
+      <hr />
+      <Counter />
     </div>
   )
 }
