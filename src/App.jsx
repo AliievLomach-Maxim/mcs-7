@@ -1,42 +1,34 @@
-import { useEffect, useState } from 'react'
-import Timer from './components/Timer/Timer'
-import Counter from './components/Counter/Counter'
-
-// App mount >> App unmount >> App mount
+import { useState } from 'react'
+import TestForm from './components/TestForm/TestForm'
+import ControlForm from './components/ControlForm/ControlForm'
 
 const App = () => {
-  const [counter, setCounter] = useState(0)
-  const [counter2, setCounter2] = useState(0)
-  const [isShowTimer, setIsShowTimer] = useState(false)
+  const handleSave = (data) => {
+    const newData = { ...data, userRole: 'user' }
+    console.log('newData', newData)
+  }
+  const [lang, setLang] = useState('ua')
 
-  // Mount
-  useEffect(() => {
-    console.log('Mount')
-  }, [])
+  const [inputValue, setInputValue] = useState('')
+  const handleChange = ({ target: { value } }) => {
+    if (value.includes('@')) return
+    setInputValue(value)
+  }
 
-  // Mount & update counter
-  useEffect(() => {
-    console.log('counter', counter)
-  }, [counter])
-
-  // update counter
-  useEffect(() => {
-    if (counter2 === 0) {
-      return
-    }
-    console.log('counter2', counter2)
-  }, [counter2])
+  const handleChangeLang = ({ target: { value } }) => {
+    setLang(value)
+  }
 
   return (
     <div>
-      <button onClick={() => setCounter(counter + 1)}>{counter}</button>
-      <button onClick={() => setCounter2(counter2 + 1)}>{counter2}</button>
-      <button onClick={() => setIsShowTimer(!isShowTimer)}>{isShowTimer ? 'Hide' : 'Show'}</button>
-      {isShowTimer && <Timer />}
+      <h1>Current lang: {lang}</h1>
+      <input type='text' value={inputValue} onChange={handleChange} />
+      <select value={lang} onChange={handleChangeLang}>
+        <option value='en'>EN</option>
+        <option value='ua'>UA</option>
+      </select>
       <hr />
-      <hr />
-      <hr />
-      <Counter />
+      <ControlForm save={handleSave} />
     </div>
   )
 }
