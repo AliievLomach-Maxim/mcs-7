@@ -12,14 +12,6 @@ const ControlForm = ({ save }) => {
     setFormState(defaultState)
   }
 
-  //   const handleLastName = ({ target: { value } }) => {
-  //     setFormState({ ...formState, lastName: value })
-  //   }
-
-  //   const handleFirstName = ({ target: { value } }) => {
-  //     setFormState({ ...formState, firstName: value })
-  //   }
-
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'firstName' && value.includes('@')) return
     setFormState({ ...formState, [name]: value })
