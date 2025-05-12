@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://hn.algolia.com/api/v1'
+axios.defaults.baseURL = 'https://dummyjson.com'
 
-export const getArticles = async (searchValue, page) => {
-  const { data } = await axios(`/search`, {
-    params: {
-      query: searchValue,
-      page,
-    },
-  })
+export const getProducts = async () => {
+  const { data } = await axios(`/products`)
+  return data
+}
+
+export const getSingleProduct = async (id) => {
+  const { data } = await axios(`/products/${id}`)
   return data
 }
