@@ -1,30 +1,36 @@
 import { Route, Routes } from 'react-router-dom'
-import ProductsPage from './pages/ProductsPage/ProductsPage'
-import HomePage from './pages/HomePage/HomePage'
-import ProductsDetailsPage from './pages/ProductsDetailsPage/ProductsDetailsPage'
-import ProductMeta from './components/ProductMeta/ProductMeta'
-import ProductDimensions from './components/ProductDimensions/ProductDimensions'
-import HomeLayout from './layouts/HomeLayout/HomeLayout'
-import ProductsLayout from './layouts/ProductsLayout/ProductsLayout'
+// import ProductsPage from './pages/ProductsPage/ProductsPage'
+// import HomePage from './pages/HomePage/HomePage'
+// import ProductsDetailsPage from './pages/ProductsDetailsPage/ProductsDetailsPage'
+// import ProductMeta from './components/ProductMeta/ProductMeta'
+// import ProductDimensions from './components/ProductDimensions/ProductDimensions'
+// import HomeLayout from './layouts/HomeLayout/HomeLayout'
+import { lazy, Suspense } from 'react'
+
+const HomeLayout = lazy(() => import('./layouts/HomeLayout/HomeLayout'))
+const ProductDimensions = lazy(() => import('./components/ProductDimensions/ProductDimensions'))
+const ProductMeta = lazy(() => import('./components/ProductMeta/ProductMeta'))
+const ProductsDetailsPage = lazy(() => import('./pages/ProductsDetailsPage/ProductsDetailsPage'))
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
+const ProductsPage = lazy(() => import('./pages/ProductsPage/ProductsPage'))
 
 const App = () => {
   return (
     <div>
       {/* <Nav /> */}
-      <Routes>
-        <Route path='/' element={<HomeLayout />}>
-          <Route index element={<HomePage />} />
-        </Route>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/products' element={<ProductsLayout />}>
-          <Route index element={<ProductsPage />} />
-          <Route path='/products/:productId' element={<ProductsDetailsPage />}>
-            <Route path='meta' element={<ProductMeta />} />
-            <Route path='dimensions' element={<ProductDimensions />} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path='/' element={<HomeLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path='/products' element={<ProductsPage />} />
+            <Route path='/products/:productId' element={<ProductsDetailsPage />}>
+              <Route path='meta' element={<ProductMeta />} />
+              <Route path='dimensions' element={<ProductDimensions />} />
+            </Route>
           </Route>
-        </Route>
-        <Route path='*' element={<div>404</div>} />
-      </Routes>
+          <Route path='*' element={<div>404</div>} />
+        </Routes>
+      </Suspense>
     </div>
   )
 }

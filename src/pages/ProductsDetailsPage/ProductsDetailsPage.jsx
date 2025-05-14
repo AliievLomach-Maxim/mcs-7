@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useParams } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getSingleProduct } from '../../api/api'
 import { useEffect, useState } from 'react'
 
@@ -16,9 +16,17 @@ const ProductsDetailsPage = () => {
     }
   }, [productId])
 
+  const navigate = useNavigate()
+
+  const location = useLocation()
+  const handleClick = () => {
+    navigate(location.state ?? '/products')
+  }
+
   return (
     product && (
       <div>
+        <button onClick={handleClick}>Back</button>
         <p>{product.id}</p>
         <h1>{product.title}</h1>
         <hr />
