@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
 import { getProducts } from '../../api/api'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const ProductsPage = () => {
+  const lang = useSelector((state) => state.lang.current)
+
   const [products, setProducts] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -33,6 +36,8 @@ const ProductsPage = () => {
 
   return (
     <>
+      <h1>Current: {lang}</h1>
+      <br />
       <input
         type='text'
         value={searchValue}
