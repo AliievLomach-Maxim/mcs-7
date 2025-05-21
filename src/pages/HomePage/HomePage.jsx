@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { decrementAction, incrementAction } from '../../store/counterSlise'
+import { decrement, increment } from '../../store/counterSlise'
 import { langAction } from '../../store/langSlice'
 
 const HomePage = () => {
@@ -9,11 +9,11 @@ const HomePage = () => {
   const dispatch = useDispatch()
 
   const handleIncrement = () => {
-    dispatch(incrementAction(1))
+    dispatch(increment(1))
   }
 
   const handleDecrement = () => {
-    dispatch(decrementAction(1))
+    dispatch(decrement(1))
   }
 
   const handleChangeLang = ({ target: { value } }) => {
