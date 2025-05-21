@@ -273,3 +273,23 @@
         </ul>
 </ul>
 </details>
+
+<details>
+  <summary>Заняття 2</summary>
+        <ul>
+            <li>configureStore</li>
+            <li>Функція createAction</li>
+            <li>Функція createReducer</li>
+            <li>Функція createSlice</li>
+            <li>Створення слайса</li>
+            <li>Властивості name та initialState</li>
+            <li>Властивість reducers та case-редюсери</li>
+            <li>Експорт фабрик екшенів</li>
+            <li>Експорт кореневого редюсера</li>
+            <li>Використання Immer для оновлення стану у case-редюсерах слайсів</li>
+            <li>Бібліотека Redux Persist</li>
+            <li>Створення конфігурації</li>
+            <li>Створення persistor</li>
+            <li>Додавання PersistGate</li>
+        </ul>
+</details>

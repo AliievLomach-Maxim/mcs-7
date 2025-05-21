@@ -19,6 +19,11 @@ const Nav = () => {
               Products
             </NavLink>
           </li>
+          <li>
+            <NavLink to='/todos' className={navClasses}>
+              Todo
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>
