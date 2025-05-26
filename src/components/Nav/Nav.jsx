@@ -20,6 +20,11 @@ const Nav = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to='/articles' className={navClasses}>
+              Articles
+            </NavLink>
+          </li>
+          <li>
             <NavLink to='/todos' className={navClasses}>
               Todo
             </NavLink>

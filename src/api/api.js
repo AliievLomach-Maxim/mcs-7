@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://dummyjson.com'
+// axios.defaults.baseURL = 'https://dummyjson.com'
 
 export const getProducts = async () => {
   const { data } = await axios(`/products`)

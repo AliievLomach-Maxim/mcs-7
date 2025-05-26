@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 // import HomeLayout from './layouts/HomeLayout/HomeLayout'
 import { lazy, Suspense } from 'react'
 import TodoPage from './pages/TodoPage/TodoPage'
+import ArticlesPage from './pages/ArticlesPage/ArticlesPage'
 
 const HomeLayout = lazy(() => import('./layouts/HomeLayout/HomeLayout'))
 const ProductDimensions = lazy(() => import('./components/ProductDimensions/ProductDimensions'))
@@ -23,6 +24,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<HomeLayout />}>
             <Route index element={<HomePage />} />
+            <Route path='/articles' element={<ArticlesPage />} />
             <Route path='/todos' element={<TodoPage />} />
             <Route path='/products' element={<ProductsPage />} />
             <Route path='/products/:productId' element={<ProductsDetailsPage />}>
