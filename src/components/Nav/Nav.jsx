@@ -29,6 +29,11 @@ const Nav = () => {
               Todo
             </NavLink>
           </li>
+          <li>
+            <NavLink to='/posts' className={navClasses}>
+              Posts
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

@@ -8,6 +8,8 @@ import { Route, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import TodoPage from './pages/TodoPage/TodoPage'
 import ArticlesPage from './pages/ArticlesPage/ArticlesPage'
+import PostsPage from './pages/PostsPage/PostsPage'
+import Loader from './components/Loader/Loader'
 
 const HomeLayout = lazy(() => import('./layouts/HomeLayout/HomeLayout'))
 const ProductDimensions = lazy(() => import('./components/ProductDimensions/ProductDimensions'))
@@ -20,12 +22,14 @@ const App = () => {
   return (
     <div>
       {/* <Nav /> */}
+      <Loader />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path='/' element={<HomeLayout />}>
             <Route index element={<HomePage />} />
             <Route path='/articles' element={<ArticlesPage />} />
             <Route path='/todos' element={<TodoPage />} />
+            <Route path='/posts' element={<PostsPage />} />
             <Route path='/products' element={<ProductsPage />} />
             <Route path='/products/:productId' element={<ProductsDetailsPage />}>
               <Route path='meta' element={<ProductMeta />} />
