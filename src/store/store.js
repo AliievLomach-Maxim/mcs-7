@@ -14,6 +14,9 @@ import { langReducer } from './langSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { todoReducer } from './todoSlice'
 import { articlesReducer } from './articles/articlesSlice'
+import { filtersReducer } from './filters/filtersSlice'
+import { postReducer } from './posts/postSlice'
+import { customRootReducer } from './customRootSlice'
 
 const todoConfig = {
   key: 'todo',
@@ -32,6 +35,9 @@ const rootReducer = {
   lang: persistedLangReducer,
   todo: persistedTodoReducer,
   articles: articlesReducer,
+  filters: filtersReducer,
+  posts: postReducer,
+  root: customRootReducer,
 }
 
 export const store = configureStore({

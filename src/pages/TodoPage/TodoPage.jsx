@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { changeTodoStatus, createTodo, deleteTodo, updateTodo } from '../../store/todoSlice'
+import { changeTodoStatus, createTodo, deleteTodo } from '../../store/todoSlice'
 import { nanoid } from '@reduxjs/toolkit'
 import { Field, Form, Formik } from 'formik'
 
 const TodoPage = () => {
-  const todos = useSelector((state) => state.todo.todos)
+  const todos = useSelector((state) => {
+    console.log('useSelector')
+    return state.todo.todos
+  })
   const dispatch = useDispatch()
 
-  const handleUpdate = (data) => {
-    dispatch(updateTodo(data))
-  }
   const handleDelete = (id) => {
     dispatch(deleteTodo(id))
   }

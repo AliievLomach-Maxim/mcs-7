@@ -1,10 +1,20 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createArticleThunk, getArticlesThunk } from '../../store/articles/articlesOps'
 import { Field, Form, Formik } from 'formik'
+import {
+  selectArticles,
+  selectFilteredArticles,
+  selectMemoFilteredArticles,
+} from '../../store/articles/articlesSlice'
+import { changeSearchValue, selectSearchValue } from '../../store/filters/filtersSlice'
 
 const ArticlesPage = () => {
-  const { data, isLoading, isError } = useSelector((state) => state.articles)
+  // const { isLoading, isError } = useSelector(selectArticles)
+  const searchValue = useSelector(selectSearchValue)
+
+  const filteredData = useSelector(selectMemoFilteredArticles)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -16,11 +26,20 @@ const ArticlesPage = () => {
     resetForm()
   }
 
+  const handleSearch = ({ target: { value } }) => {
+    dispatch(changeSearchValue(value))
+  }
+
+  // const filteredData = useMemo(() => data.filter((el) => el.name.includes(searchValue)), [data])
+
   return (
     <div>
       <h1>ArticlesPage</h1>
-      {isLoading && <h2>Loading..</h2>}
-      {isError && <h2>Oops..{isError}</h2>}
+      {/* {isLoading && <h2>Loading..</h2>}
+      {isError && <h2>Oops..{isError}</h2>} */}
+
+      <hr />
+      <input type='text' placeholder='filter by name' value={searchValue} onChange={handleSearch} />
       <hr />
       <Formik
         initialValues={{
@@ -35,9 +54,9 @@ const ArticlesPage = () => {
       </Formik>
 
       <hr />
-      {data && (
+      {filteredData && (
         <ul>
-          {data.map((el) => (
+          {filteredData.map((el) => (
             <li key={el.id}>{el.name}</li>
           ))}
         </ul>
